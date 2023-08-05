@@ -51,6 +51,16 @@ export const editItem = item => async dispatch => {
   }
 }
 
+export const deleteItem = (itemId, pokemonId) => async dispatch => {
+  const res = await fetch(`/api/items/${itemId}`, {
+    method: "DELETE"
+  });
+
+  if (res.ok) {
+    dispatch(remove(itemId, pokemonId));
+  }
+};
+
 const initialState = {};
 
 const itemsReducer = (state = initialState, action) => {
